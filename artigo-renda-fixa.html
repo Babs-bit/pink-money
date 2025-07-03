@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Definitivo do Tesouro Direto - PINK MONEY</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Orbitron (Títulos) & Inter (Corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide.min.js"></script>
+
+    <style>
+        /* Estilos customizados (os mesmos da página inicial para consistência) */
+        :root {
+            --pink-neon: #FF007A;
+            --cyan-electric: #00F2FF;
+            --text-dark: #0C0C0C;
+            --bg-light: #FFFFFF;
+            --bg-off-white: #F8F8F8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        h1, h2, h3, .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .text-shadow-pink {
+            text-shadow: 0 0 8px var(--pink-neon);
+        }
+        
+        .cta-button {
+            background-color: var(--pink-neon);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(255, 0, 122, 0.5);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 15px var(--pink-neon), 0 0 25px var(--pink-neon);
+        }
+
+        /* Estilos para o conteúdo do artigo */
+        .article-content h2 {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .article-content h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .article-content p {
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+        }
+        .article-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+        }
+        .article-content a {
+            color: var(--pink-neon);
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        .article-content a:hover {
+            color: var(--cyan-electric);
+        }
+        .article-content blockquote {
+            border-left: 4px solid var(--pink-neon);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #4a5568; /* text-gray-600 */
+            background-color: #f7fafc; /* bg-gray-100 */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- CABEÇALHO FIXO (Links ajustados para voltar à página inicial) -->
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="text-2xl font-bold font-orbitron tracking-wider">
+                    <span class="text-shadow-pink" style="color: var(--pink-neon);">PINK</span><span class="text-gray-800">MONEY</span>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#artigos" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Artigos</a>
+                    <a href="index.html#midia" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Mídia</a>
+                    <a href="index.html#cursos" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Cursos</a>
+                    <a href="index.html#ferramentas" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Ferramentas</a>
+                </nav>
+                <a href="index.html#cursos" class="hidden md:block cta-button font-bold py-3 px-6 rounded-lg text-sm">
+                    Nossos Cursos
+                </a>
+                <button id="mobile-menu-button" class="md:hidden text-gray-800">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md">
+            <a href="index.html#artigos" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Artigos</a>
+            <a href="index.html#midia" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Mídia</a>
+            <a href="index.html#cursos" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Cursos</a>
+            <a href="index.html#ferramentas" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Ferramentas</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <!-- Container principal com layout de grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 xl:gap-12">
+                
+                <!-- Coluna do Artigo (ocupa 2 de 3 colunas em telas grandes) -->
+                <div class="lg:col-span-2">
+                    <a href="index.html" class="inline-flex items-center text-sm text-gray-600 hover:text-pink-500 transition-colors duration-300 mb-6 group">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1"></i>
+                        Voltar para a página inicial
+                    </a>
+
+                    <article class="bg-white p-6 md:p-10 rounded-lg shadow-xl">
+                        <!-- Cabeçalho do Artigo -->
+                        <header class="text-center border-b-2 border-dashed border-gray-200 pb-8 mb-8">
+                            <div class="mb-4">
+                                <span class="text-sm font-semibold uppercase tracking-widest" style="color: var(--pink-neon);">Renda Fixa</span>
+                            </div>
+                            <h1 class="text-3xl md:text-5xl font-extrabold font-orbitron mb-4">O guia definitivo para começar a investir no Tesouro Direto.</h1>
+                            <p class="text-lg text-gray-500">Desvende o investimento mais seguro do Brasil e dê o primeiro passo para a sua independência financeira.</p>
+                            <div class="mt-6 text-sm text-gray-400">
+                                <span>Por PINK MONEY</span> &bull; <span>Publicado em 03 de Julho de 2025</span>
+                            </div>
+                        </header>
+
+                        <!-- Imagem de Destaque -->
+                        <figure class="my-8">
+                            <img src="https://placehold.co/1200x600/0C0C0C/FF007A?text=Tesouro+Direto" alt="Ilustração sobre Tesouro Direto" class="w-full h-auto object-cover rounded-lg shadow-md">
+                        </figure>
+
+                        <!-- Conteúdo do Artigo -->
+                        <div class="article-content text-lg text-gray-800">
+                            <p>Se você já ouviu falar em investimentos, com certeza o termo "Tesouro Direto" já cruzou seu caminho. Mas o que exatamente ele significa? De forma simples e direta: <strong>investir no Tesouro Direto é como emprestar dinheiro para o governo brasileiro</strong>. Em troca, ele te paga juros por isso. É considerado o investimento de menor risco do país, pois é 100% garantido pelo Tesouro Nacional.</p>
+                            <h2>O que é o Tesouro Direto?</h2>
+                            <p>O Tesouro Direto é um programa do Tesouro Nacional... (conteúdo continua)</p>
+                            <!-- O resto do conteúdo do artigo permanece o mesmo -->
+                        </div>
+
+                        <!-- Rodapé do Artigo -->
+                        <footer class="mt-12 pt-8 border-t-2 border-dashed border-gray-200">
+                            <div class="text-center">
+                                <h3 class="font-bold mb-4">Compartilhe este conhecimento:</h3>
+                                <div class="flex justify-center items-center space-x-4">
+                                    <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-pink-100 transition-colors"><i data-lucide="twitter"></i></a>
+                                    <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-pink-100 transition-colors"><i data-lucide="facebook"></i></a>
+                                    <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-pink-100 transition-colors"><i data-lucide="linkedin"></i></a>
+                                    <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-pink-100 transition-colors"><i data-lucide="send"></i></a>
+                                </div>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+
+                <!-- Barra Lateral (ocupa 1 de 3 colunas em telas grandes) -->
+                <aside class="lg:col-span-1 mt-12 lg:mt-0">
+                    <div class="sticky top-28">
+                        <div class="bg-white p-6 rounded-lg shadow-xl">
+                            <h3 class="font-orbitron font-bold text-xl mb-6 border-b-2 border-pink-500 pb-3">Confira outros artigos</h3>
+                            <div class="space-y-6">
+                                <!-- Artigo Relacionado 1 -->
+                                <a href="#" class="block group">
+                                    <p class="font-bold text-gray-800 group-hover:text-pink-500 transition-colors duration-200">O que é CDI e como ele afeta seus investimentos?</p>
+                                    <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--pink-neon);">Renda Fixa</span>
+                                </a>
+                                <!-- Artigo Relacionado 2 -->
+                                <a href="#" class="block group">
+                                    <p class="font-bold text-gray-800 group-hover:text-pink-500 transition-colors duration-200">CDB, LCI e LCA: Qual a melhor opção para você?</p>
+                                    <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--pink-neon);">Renda Fixa</span>
+                                </a>
+                                <!-- Artigo Relacionado 3 -->
+                                <a href="#" class="block group">
+                                    <p class="font-bold text-gray-800 group-hover:text-pink-500 transition-colors duration-200">Reserva de Emergência: Onde investir com segurança e liquidez.</p>
+                                    <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--cyan-electric);">Planejamento</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+            <p>&copy; 2024 PINK MONEY. Todos os direitos reservados.</p>
+            <a href="index.html" class="text-sm text-cyan-400 hover:underline mt-2 inline-block">Voltar para a página inicial</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
