@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINK MONEY - O futuro exige conhecimento</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Orbitron (Títulos) & Inter (Corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide.min.js"></script>
+    <script>
+      // Workaround for Lucide Icons in HTML
+      setTimeout(() => {
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+      }, 100);
+    </script>
+
+    <style>
+        /* Estilos customizados para complementar o Tailwind */
+        :root {
+            --pink-neon: #FF007A;
+            --cyan-electric: #00F2FF;
+            --text-dark: #0C0C0C;
+            --bg-light: #FFFFFF;
+            --bg-off-white: #F8F8F8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        h1, h2, h3, .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Efeito de brilho neon */
+        .neon-glow-pink {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 5px var(--pink-neon), 0 0 10px var(--pink-neon);
+        }
+        .neon-glow-cyan {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 5px var(--cyan-electric), 0 0 10px var(--cyan-electric);
+        }
+        .text-shadow-pink {
+            text-shadow: 0 0 8px var(--pink-neon);
+        }
+        .text-shadow-cyan {
+            text-shadow: 0 0 8px var(--cyan-electric);
+        }
+
+        /* Estilizando o botão principal */
+        .cta-button {
+            background-color: var(--pink-neon);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(255, 0, 122, 0.5);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 15px var(--pink-neon), 0 0 25px var(--pink-neon);
+        }
+        
+        /* Efeito Glitch para ícones */
+        .icon-glitch:hover {
+            animation: glitch 0.3s linear infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); color: var(--pink-neon); }
+            40% { transform: translate(-2px, -2px); color: var(--cyan-electric); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); color: var(--pink-neon); }
+            100% { transform: translate(0); }
+        }
+
+        /* Ticker de rolagem */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+            background-color: var(--text-dark);
+            color: white;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker-scroll 40s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+        }
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- CABEÇALHO FIXO -->
+    <header id="header" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- LOGO -->
+                <a href="#inicio" class="text-2xl font-bold font-orbitron tracking-wider">
+                    <span class="text-shadow-pink" style="color: var(--pink-neon);">PINK</span><span class="text-gray-800">MONEY</span>
+                </a>
+
+                <!-- NAVEGAÇÃO DESKTOP -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#artigos" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Artigos</a>
+                    <a href="#cursos" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Cursos</a>
+                    <a href="#ferramentas" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Ferramentas</a>
+                    <a href="#sobre" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Sobre</a>
+                    <a href="#contato" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Contato</a>
+                </nav>
+
+                <!-- BOTÃO CTA -->
+                <a href="#cursos" class="hidden md:block cta-button font-bold py-3 px-6 rounded-lg text-sm">
+                    Nossos Cursos
+                </a>
+                
+                <!-- MENU MOBILE -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-800">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- MENU DROPDOWN MOBILE -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md">
+            <a href="#artigos" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Artigos</a>
+            <a href="#cursos" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Cursos</a>
+            <a href="#ferramentas" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Ferramentas</a>
+            <a href="#sobre" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Sobre</a>
+            <a href="#contato" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Contato</a>
+            <div class="p-4">
+                <a href="#cursos" class="block text-center cta-button font-bold py-3 px-6 rounded-lg text-sm w-full">
+                    Nossos Cursos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- SEÇÃO HERO -->
+        <section id="inicio" class="relative overflow-hidden bg-white py-20 md:py-32">
+             <div class="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
+             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold font-orbitron tracking-tighter mb-4">
+                    <span class="text-shadow-pink" style="color: var(--pink-neon);">O FUTURO</span> DO SEU DINHEIRO É <span class="text-shadow-cyan" style="color: var(--cyan-electric);">AGORA.</span>
+                </h1>
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-8">
+                    Aprenda a investir de forma inteligente com a plataforma que traduz o economês para o português claro.
+                </p>
+                <a href="#artigos" class="cta-button inline-block font-bold text-lg py-4 px-10 rounded-lg">
+                    Explorar Conteúdo Gratuito
+                </a>
+            </div>
+        </section>
+
+        <!-- PAINEL DE INDICADORES -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <!-- Duplicado para efeito de rolagem contínua -->
+                <div class="ticker-item">Ibovespa: <span class="text-green-400">121.635,06 (+0,5%)</span></div>
+                <div class="ticker-item">Taxa Selic: <span class="text-cyan-400">10,50% a.a.</span></div>
+                <div class="ticker-item">IPCA (12m): <span class="text-yellow-400">3,90%</span></div>
+                <div class="ticker-item">CDI: <span class="text-cyan-400">10,40% a.a.</span></div>
+                <div class="ticker-item">Dólar (USD/BRL): <span class="text-red-400">R$ 5,45 (-0,2%)</span></div>
+                <div class="ticker-item text-xs text-gray-400">Fonte: B3 (delay 15min)</div>
+                <div class="ticker-item">Ibovespa: <span class="text-green-400">121.635,06 (+0,5%)</span></div>
+                <div class="ticker-item">Taxa Selic: <span class="text-cyan-400">10,50% a.a.</span></div>
+                <div class="ticker-item">IPCA (12m): <span class="text-yellow-400">3,90%</span></div>
+                <div class="ticker-item">CDI: <span class="text-cyan-400">10,40% a.a.</span></div>
+                <div class="ticker-item">Dólar (USD/BRL): <span class="text-red-400">R$ 5,45 (-0,2%)</span></div>
+                <div class="ticker-item text-xs text-gray-400">Fonte: B3 (delay 15min)</div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO ARTIGOS -->
+        <section id="artigos" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Desvende o Mercado <span style="color: var(--pink-neon);">Financeiro</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card Artigo 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/0C0C0C/FF007A?text=Renda+Fixa" alt="Imagem do artigo sobre Renda Fixa" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--pink-neon);">Renda Fixa</span>
+                            <h3 class="font-bold text-xl mt-2 mb-3">O guia definitivo para começar a investir no Tesouro Direto.</h3>
+                            <p class="text-gray-600 text-sm mb-4">Entenda o que é, como funciona e qual título escolher para seus objetivos.</p>
+                            <a href="#" class="font-bold text-sm" style="color: var(--cyan-electric);">Leia mais &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Card Artigo 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/0C0C0C/00F2FF?text=Ações" alt="Imagem do artigo sobre Ações" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--pink-neon);">Renda Variável</span>
+                            <h3 class="font-bold text-xl mt-2 mb-3">5 erros que todo investidor iniciante em ações comete.</h3>
+                            <p class="text-gray-600 text-sm mb-4">Saiba como evitar as armadilhas mais comuns da bolsa de valores.</p>
+                            <a href="#" class="font-bold text-sm" style="color: var(--cyan-electric);">Leia mais &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Card Artigo 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/0C0C0C/FFFFFF?text=Cripto" alt="Imagem do artigo sobre Criptomoedas" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--pink-neon);">Cripto</span>
+                            <h3 class="font-bold text-xl mt-2 mb-3">Bitcoin e Ethereum: Entenda as diferenças e o potencial.</h3>
+                            <p class="text-gray-600 text-sm mb-4">Uma análise direta sobre os dois maiores ativos digitais do mundo.</p>
+                            <a href="#" class="font-bold text-sm" style="color: var(--cyan-electric);">Leia mais &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO CURSOS -->
+        <section id="cursos" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Eleve seu Conhecimento com Nossos <span style="color: var(--cyan-electric);">Cursos</span></h2>
+                    <p class="max-w-2xl mx-auto text-gray-600 mb-12">Cursos práticos e direto ao ponto, disponíveis na Udemy, para você dominar seus investimentos.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-2xl p-8 md:flex items-center gap-8">
+                    <img src="https://placehold.co/400x400/FF007A/FFFFFF?text=Curso+Investidor" alt="Capa do curso Investidor Hacker" class="w-full md:w-1/3 rounded-lg mb-6 md:mb-0">
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Investidor Hacker: Do Zero ao Avançado</h3>
+                        <p class="text-gray-300 mb-6">Aprenda a analisar ativos, montar uma carteira diversificada e usar a tecnologia a seu favor para maximizar seus retornos. Sem enrolação, com foco total em resultados.</p>
+                        <a href="#" target="_blank" class="cta-button inline-block font-bold py-3 px-8 rounded-lg">
+                            Acesse na Udemy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO FERRAMENTAS -->
+        <section id="ferramentas" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Ferramentas <span style="color: var(--pink-neon);">Cyber-Precisas</span> para o seu Bolso</h2>
+                <div class="max-w-5xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Calculadora de Renda Fixa (Juros Compostos)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Formulário da Calculadora -->
+                        <div class="space-y-4">
+                            <div>
+                                <label for="initialInvestment" class="block text-sm font-medium text-gray-700">Investimento Inicial (R$)</label>
+                                <input type="number" id="initialInvestment" class="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500" placeholder="1000">
+                            </div>
+                            <div>
+                                <label for="monthlyInvestment" class="block text-sm font-medium text-gray-700">Aportes Mensais (R$)</label>
+                                <input type="number" id="monthlyInvestment" class="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500" placeholder="200">
+                            </div>
+                            <div>
+                                <label for="interestRate" class="block text-sm font-medium text-gray-700">Taxa de Juros (% a.a.)</label>
+                                <input type="number" id="interestRate" class="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500" placeholder="10.5">
+                            </div>
+                            <div>
+                                <label for="investmentTime" class="block text-sm font-medium text-gray-700">Prazo (em anos)</label>
+                                <input type="number" id="investmentTime" class="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500" placeholder="5">
+                            </div>
+                            <button id="calculateButton" class="w-full cta-button font-bold py-3 px-6 rounded-lg mt-4">Calcular</button>
+                        </div>
+                        
+                        <!-- Resultados e Gráfico -->
+                        <div class="flex flex-col justify-center items-center">
+                            <div id="results" class="w-full text-center space-y-3 hidden">
+                                <div class="p-3 bg-gray-100 rounded-md">
+                                    <p class="text-sm text-gray-500">Valor Final Bruto</p>
+                                    <p id="finalAmount" class="text-2xl font-bold text-gray-800"></p>
+                                </div>
+                                <div class="p-3 bg-red-50 rounded-md">
+                                    <p class="text-sm text-red-500">Imposto de Renda (IR)</p>
+                                    <p id="taxAmount" class="text-xl font-bold text-red-700"></p>
+                                </div>
+                                <div class="p-3 bg-green-50 rounded-md">
+                                    <p class="text-sm text-green-500">Valor Final Líquido</p>
+                                    <p id="netAmount" class="text-3xl font-bold" style="color: var(--cyan-electric);"></p>
+                                </div>
+                            </div>
+                             <div class="w-full mt-4">
+                                <canvas id="investmentChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO MÍDIA SOCIAL -->
+        <section id="sobre" class="py-20 bg-gray-900 text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Conecte-se. Aprenda. <span class="text-shadow-pink" style="color: var(--pink-neon);">Domine.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- YouTube -->
+                    <div class="text-center">
+                        <i data-lucide="youtube" class="w-16 h-16 mx-auto mb-4 text-red-500 icon-glitch"></i>
+                        <h3 class="text-2xl font-bold mb-4">Análises Profundas no YouTube</h3>
+                        <p class="text-gray-400 mb-6">Vídeos semanais com análises de mercado, tutoriais de investimento e entrevistas com especialistas.</p>
+                        <a href="#" class="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Inscreva-se &rarr;</a>
+                    </div>
+                    <!-- TikTok -->
+                    <div class="text-center">
+                        <i data-lucide="smartphone" class="w-16 h-16 mx-auto mb-4 text-pink-500 icon-glitch"></i>
+                        <h3 class="text-2xl font-bold mb-4">Dicas Rápidas no TikTok</h3>
+                        <p class="text-gray-400 mb-6">Pílulas de conhecimento financeiro em vídeos curtos e dinâmicos para o seu dia a dia.</p>
+                        <a href="#" class="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Siga-nos &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO CAPTURA DE LEADS -->
+        <section id="contato" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center bg-gray-50 p-8 rounded-lg shadow-lg border border-pink-200">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-3">Receba o Guia do <span style="color: var(--pink-neon);">Investidor Iniciante 2025</span></h2>
+                    <p class="text-gray-600 mb-6">Deixe seu e-mail e receba gratuitamente nosso e-book completo para dar os primeiros passos no mundo dos investimentos.</p>
+                    <form class="flex flex-col sm:flex-row max-w-lg mx-auto gap-3">
+                        <input type="email" placeholder="seu.melhor.email@provedor.com" class="flex-grow w-full px-4 py-3 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                        <button type="submit" class="cta-button font-bold py-3 px-8 rounded-lg">
+                            Baixar Agora
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo e Missão -->
+                <div>
+                    <h3 class="text-xl font-bold font-orbitron mb-2">
+                        <span style="color: var(--pink-neon);">PINK</span><span class="text-white">MONEY</span>
+                    </h3>
+                    <p class="text-sm">O futuro exige conhecimento.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="hover:text-pink-500"><i data-lucide="youtube"></i></a>
+                        <a href="#" class="hover:text-pink-500"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="hover:text-pink-500"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="hover:text-pink-500"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <!-- Links Rápidos -->
+                <div>
+                    <h4 class="font-bold text-white mb-3">Navegação</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#artigos" class="hover:text-pink-500">Artigos</a></li>
+                        <li><a href="#cursos" class="hover:text-pink-500">Cursos</a></li>
+                        <li><a href="#ferramentas" class="hover:text-pink-500">Ferramentas</a></li>
+                    </ul>
+                </div>
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-bold text-white mb-3">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-pink-500">Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <!-- Disclaimer -->
+                <div>
+                    <h4 class="font-bold text-white mb-3">Aviso</h4>
+                    <p class="text-sm">O conteúdo da PINK MONEY é estritamente educacional e não constitui recomendação de investimento.</p>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
+                <p>&copy; 2024 PINK MONEY. Todos os direitos reservados. Feito com <span style="color: var(--pink-neon);">&hearts;</span> para desmistificar o mercado.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- SCRIPT PARA MENU MOBILE ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- SCRIPT PARA CALCULADORA DE RENDA FIXA ---
+        const calculateButton = document.getElementById('calculateButton');
+        let investmentChart = null;
+
+        calculateButton.addEventListener('click', () => {
+            const initialInvestment = parseFloat(document.getElementById('initialInvestment').value) || 0;
+            const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value) || 0;
+            const annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+            const years = parseInt(document.getElementById('investmentTime').value) || 0;
+
+            if (years <= 0 || annualRate <= 0) {
+                alert('Por favor, insira valores válidos para a taxa de juros e o prazo.');
+                return;
+            }
+
+            const monthlyRate = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
+            const months = years * 12;
+            
+            let totalInvested = initialInvestment;
+            let finalAmount = initialInvestment;
+            const evolution = [];
+
+            for (let i = 1; i <= months; i++) {
+                finalAmount *= (1 + monthlyRate);
+                finalAmount += monthlyInvestment;
+                totalInvested += monthlyInvestment;
+                if (i % 12 === 0 || i === months) { // Adiciona um ponto por ano e o final
+                    evolution.push({ month: i, amount: finalAmount });
+                }
+            }
+
+            const profit = finalAmount - totalInvested;
+            
+            // Tabela de IR Regressiva (simplificada para o prazo total)
+            let taxRate = 0;
+            const days = years * 365;
+            if (days <= 180) taxRate = 0.225;
+            else if (days <= 360) taxRate = 0.20;
+            else if (days <= 720) taxRate = 0.175;
+            else taxRate = 0.15;
+
+            const taxAmount = profit > 0 ? profit * taxRate : 0;
+            const netAmount = finalAmount - taxAmount;
+
+            // Exibir resultados
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('finalAmount').textContent = `R$ ${finalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            document.getElementById('taxAmount').textContent = `- R$ ${taxAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${taxRate * 100}%)`;
+            document.getElementById('netAmount').textContent = `R$ ${netAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            // Atualizar ou criar o gráfico
+            const chartCtx = document.getElementById('investmentChart').getContext('2d');
+            const chartLabels = evolution.map(e => `Ano ${Math.ceil(e.month / 12)}`);
+            const chartData = evolution.map(e => e.amount.toFixed(2));
+
+            if (investmentChart) {
+                investmentChart.destroy();
+            }
+
+            investmentChart = new Chart(chartCtx, {
+                type: 'line',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Evolução do Patrimônio (Bruto)',
+                        data: chartData,
+                        borderColor: 'var(--pink-neon)',
+                        backgroundColor: 'rgba(255, 0, 122, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return 'R$ ' + (value / 1000) + 'k';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // --- SCRIPT PARA HEADER DINÂMICO ---
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll para baixo
+                header.style.top = '-100px';
+            } else {
+                // Scroll para cima
+                header.style.top = '0';
+            }
+            if (scrollTop > 50) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // --- REINICIALIZAR ÍCONES LUCIDE ---
+        lucide.createIcons();
+    </script>
+</body>
+</html>
