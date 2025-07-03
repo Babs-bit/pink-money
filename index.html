@@ -18,14 +18,6 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide.min.js"></script>
-    <script>
-      // Workaround for Lucide Icons in HTML
-      setTimeout(() => {
-        if (window.lucide) {
-            window.lucide.createIcons();
-        }
-      }, 100);
-    </script>
 
     <style>
         /* Estilos customizados para complementar o Tailwind */
@@ -126,9 +118,9 @@
                 <!-- NAVEGAÇÃO DESKTOP -->
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="#artigos" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Artigos</a>
+                    <a href="#midia" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Mídia</a>
                     <a href="#cursos" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Cursos</a>
                     <a href="#ferramentas" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Ferramentas</a>
-                    <a href="#sobre" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Sobre</a>
                     <a href="#contato" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Contato</a>
                 </nav>
 
@@ -146,9 +138,9 @@
         <!-- MENU DROPDOWN MOBILE -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md">
             <a href="#artigos" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Artigos</a>
+            <a href="#midia" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Mídia</a>
             <a href="#cursos" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Cursos</a>
             <a href="#ferramentas" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Ferramentas</a>
-            <a href="#sobre" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Sobre</a>
             <a href="#contato" class="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100">Contato</a>
             <div class="p-4">
                 <a href="#cursos" class="block text-center cta-button font-bold py-3 px-6 rounded-lg text-sm w-full">
@@ -233,6 +225,29 @@
             </div>
         </section>
 
+        <!-- SEÇÃO MÍDIA SOCIAL -->
+        <section id="midia" class="py-20 bg-gray-900 text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Conecte-se. Aprenda. <span class="text-shadow-pink" style="color: var(--pink-neon);">Domine.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- YouTube -->
+                    <div class="text-center">
+                        <i data-lucide="youtube" class="w-16 h-16 mx-auto mb-4 text-red-500 icon-glitch"></i>
+                        <h3 class="text-2xl font-bold mb-4">Análises Profundas no YouTube</h3>
+                        <p class="text-gray-400 mb-6">Vídeos semanais com análises de mercado, tutoriais de investimento e entrevistas com especialistas.</p>
+                        <a href="#" class="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Inscreva-se &rarr;</a>
+                    </div>
+                    <!-- TikTok -->
+                    <div class="text-center">
+                        <i data-lucide="smartphone" class="w-16 h-16 mx-auto mb-4 text-pink-500 icon-glitch"></i>
+                        <h3 class="text-2xl font-bold mb-4">Dicas Rápidas no TikTok</h3>
+                        <p class="text-gray-400 mb-6">Pílulas de conhecimento financeiro em vídeos curtos e dinâmicos para o seu dia a dia.</p>
+                        <a href="#" class="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Siga-nos &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SEÇÃO CURSOS -->
         <section id="cursos" class="py-20 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -306,29 +321,6 @@
             </div>
         </section>
         
-        <!-- SEÇÃO MÍDIA SOCIAL -->
-        <section id="sobre" class="py-20 bg-gray-900 text-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Conecte-se. Aprenda. <span class="text-shadow-pink" style="color: var(--pink-neon);">Domine.</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <!-- YouTube -->
-                    <div class="text-center">
-                        <i data-lucide="youtube" class="w-16 h-16 mx-auto mb-4 text-red-500 icon-glitch"></i>
-                        <h3 class="text-2xl font-bold mb-4">Análises Profundas no YouTube</h3>
-                        <p class="text-gray-400 mb-6">Vídeos semanais com análises de mercado, tutoriais de investimento e entrevistas com especialistas.</p>
-                        <a href="#" class="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Inscreva-se &rarr;</a>
-                    </div>
-                    <!-- TikTok -->
-                    <div class="text-center">
-                        <i data-lucide="smartphone" class="w-16 h-16 mx-auto mb-4 text-pink-500 icon-glitch"></i>
-                        <h3 class="text-2xl font-bold mb-4">Dicas Rápidas no TikTok</h3>
-                        <p class="text-gray-400 mb-6">Pílulas de conhecimento financeiro em vídeos curtos e dinâmicos para o seu dia a dia.</p>
-                        <a href="#" class="font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Siga-nos &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- SEÇÃO CAPTURA DE LEADS -->
         <section id="contato" class="py-20 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -393,149 +385,152 @@
     </footer>
 
     <script>
-        // --- SCRIPT PARA MENU MOBILE ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Este evento garante que todo o HTML foi carregado antes de executar os scripts.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializa os ícones Lucide em todo o documento.
+            lucide.createIcons();
 
-        // Fechar menu mobile ao clicar em um link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+            // --- SCRIPT PARA MENU MOBILE ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
-        });
 
-        // --- SCRIPT PARA CALCULADORA DE RENDA FIXA ---
-        const calculateButton = document.getElementById('calculateButton');
-        let investmentChart = null;
+            // Fechar menu mobile ao clicar em um link
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
 
-        calculateButton.addEventListener('click', () => {
-            const initialInvestment = parseFloat(document.getElementById('initialInvestment').value) || 0;
-            const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value) || 0;
-            const annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
-            const years = parseInt(document.getElementById('investmentTime').value) || 0;
+            // --- SCRIPT PARA CALCULADORA DE RENDA FIXA ---
+            const calculateButton = document.getElementById('calculateButton');
+            let investmentChart = null;
 
-            if (years <= 0 || annualRate <= 0) {
-                alert('Por favor, insira valores válidos para a taxa de juros e o prazo.');
-                return;
-            }
+            calculateButton.addEventListener('click', () => {
+                const initialInvestment = parseFloat(document.getElementById('initialInvestment').value) || 0;
+                const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value) || 0;
+                const annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+                const years = parseInt(document.getElementById('investmentTime').value) || 0;
 
-            const monthlyRate = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
-            const months = years * 12;
-            
-            let totalInvested = initialInvestment;
-            let finalAmount = initialInvestment;
-            const evolution = [];
-
-            for (let i = 1; i <= months; i++) {
-                finalAmount *= (1 + monthlyRate);
-                finalAmount += monthlyInvestment;
-                totalInvested += monthlyInvestment;
-                if (i % 12 === 0 || i === months) { // Adiciona um ponto por ano e o final
-                    evolution.push({ month: i, amount: finalAmount });
+                if (years <= 0 || annualRate <= 0) {
+                    console.error('Por favor, insira valores válidos para a taxa de juros e o prazo.');
+                    return; // Evita o uso de alert()
                 }
-            }
 
-            const profit = finalAmount - totalInvested;
-            
-            // Tabela de IR Regressiva (simplificada para o prazo total)
-            let taxRate = 0;
-            const days = years * 365;
-            if (days <= 180) taxRate = 0.225;
-            else if (days <= 360) taxRate = 0.20;
-            else if (days <= 720) taxRate = 0.175;
-            else taxRate = 0.15;
+                const monthlyRate = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
+                const months = years * 12;
+                
+                let totalInvested = initialInvestment;
+                let finalAmount = initialInvestment;
+                const evolution = [];
 
-            const taxAmount = profit > 0 ? profit * taxRate : 0;
-            const netAmount = finalAmount - taxAmount;
+                for (let i = 1; i <= months; i++) {
+                    finalAmount *= (1 + monthlyRate);
+                    finalAmount += monthlyInvestment;
+                    totalInvested += monthlyInvestment;
+                    if (i % 12 === 0 || i === months) { // Adiciona um ponto por ano e o final
+                        evolution.push({ month: i, amount: finalAmount });
+                    }
+                }
 
-            // Exibir resultados
-            document.getElementById('results').classList.remove('hidden');
-            document.getElementById('finalAmount').textContent = `R$ ${finalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            document.getElementById('taxAmount').textContent = `- R$ ${taxAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${taxRate * 100}%)`;
-            document.getElementById('netAmount').textContent = `R$ ${netAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                const profit = finalAmount - totalInvested;
+                
+                // Tabela de IR Regressiva (simplificada para o prazo total)
+                let taxRate = 0;
+                const days = years * 365;
+                if (days <= 180) taxRate = 0.225;
+                else if (days <= 360) taxRate = 0.20;
+                else if (days <= 720) taxRate = 0.175;
+                else taxRate = 0.15;
 
-            // Atualizar ou criar o gráfico
-            const chartCtx = document.getElementById('investmentChart').getContext('2d');
-            const chartLabels = evolution.map(e => `Ano ${Math.ceil(e.month / 12)}`);
-            const chartData = evolution.map(e => e.amount.toFixed(2));
+                const taxAmount = profit > 0 ? profit * taxRate : 0;
+                const netAmount = finalAmount - taxAmount;
 
-            if (investmentChart) {
-                investmentChart.destroy();
-            }
+                // Exibir resultados
+                document.getElementById('results').classList.remove('hidden');
+                document.getElementById('finalAmount').textContent = `R$ ${finalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                document.getElementById('taxAmount').textContent = `- R$ ${taxAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${(taxRate * 100).toFixed(1)}%)`;
+                document.getElementById('netAmount').textContent = `R$ ${netAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
-            investmentChart = new Chart(chartCtx, {
-                type: 'line',
-                data: {
-                    labels: chartLabels,
-                    datasets: [{
-                        label: 'Evolução do Patrimônio (Bruto)',
-                        data: chartData,
-                        borderColor: 'var(--pink-neon)',
-                        backgroundColor: 'rgba(255, 0, 122, 0.1)',
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
+                // Atualizar ou criar o gráfico
+                const chartCtx = document.getElementById('investmentChart').getContext('2d');
+                const chartLabels = evolution.map(e => `Ano ${Math.ceil(e.month / 12)}`);
+                const chartData = evolution.map(e => e.amount.toFixed(2));
+
+                if (investmentChart) {
+                    investmentChart.destroy();
+                }
+
+                investmentChart = new Chart(chartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: 'Evolução do Patrimônio (Bruto)',
+                            data: chartData,
+                            borderColor: 'var(--pink-neon)',
+                            backgroundColor: 'rgba(255, 0, 122, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y);
+                                        }
+                                        return label;
                                     }
-                                    if (context.parsed.y !== null) {
-                                        label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y);
-                                    }
-                                    return label;
                                 }
                             }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value, index, values) {
-                                    return 'R$ ' + (value / 1000) + 'k';
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return 'R$ ' + (value / 1000) + 'k';
+                                    }
                                 }
                             }
                         }
                     }
+                });
+            });
+
+            // --- SCRIPT PARA HEADER DINÂMICO ---
+            let lastScrollTop = 0;
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scroll para baixo
+                    header.style.top = '-100px';
+                } else {
+                    // Scroll para cima
+                    header.style.top = '0';
                 }
+                if (scrollTop > 50) {
+                    header.classList.add('shadow-lg');
+                } else {
+                    header.classList.remove('shadow-lg');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             });
         });
-
-        // --- SCRIPT PARA HEADER DINÂMICO ---
-        let lastScrollTop = 0;
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                // Scroll para baixo
-                header.style.top = '-100px';
-            } else {
-                // Scroll para cima
-                header.style.top = '0';
-            }
-            if (scrollTop > 50) {
-                header.classList.add('shadow-lg');
-            } else {
-                header.classList.remove('shadow-lg');
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        });
-
-        // --- REINICIALIZAR ÍCONES LUCIDE ---
-        lucide.createIcons();
     </script>
 </body>
 </html>
